@@ -11,7 +11,6 @@ Implementation:
 You need the following script after your JW Player embed instance(s), please note that maxPlayers should be 1, unless you have more than one player on your page. In our demo, it is 2:
 
 <pre>
-&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
 var maxPlayers = 2;
 function randomPl(id){
