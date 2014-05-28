@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+<title>Random Playlist Item</title>
+<script type="text/javascript" src="http://p.jwpcdn.com/6/8/jwplayer.js"></script>
+</head>
+<body>
+<div id="container"></div><br /><div id="container2"></div>
+<script>
+jwplayer("container").setup({
+  playlist: "http://content.jwplatform.com/feeds/13ShtP5m.rss",
+  displaytitle: false,
+  width: 640,
+  height: 360
+});
+</script>
+<script>
+jwplayer("container2").setup({
+  playlist: "http://content.jwplatform.com/feeds/13ShtP5m.rss",
+  displaytitle: false,
+  width: 640,
+  height: 360
+});
+</script>
+<script type="text/javascript">
+var maxPlayers = 2;
+function randomPl(id){
+	return function(){
+		var playlist = jwplayer(id).getPlaylist();
+		var playlistsize = playlist.length;
+		var randomnumber=Math.floor(Math.random()*playlistsize);
+		jwplayer(id).playlistItem(randomnumber);
+	}
+}
+function randomPl2(id){
+	return function(){
+		var playlist = jwplayer(id).getPlaylist();
+		var playlistsize = playlist.length;
+		var randomnumber=Math.floor(Math.random()*playlistsize);
+		jwplayer(id).playlistItem(randomnumber);
+		jwplayer(id).stop();
+	}
+}
+for(var i = 0; i < maxPlayers; i++) { 
+	var player = jwplayer(i).id;
+	jwplayer(player).onComplete(randomPl(player));
+	jwplayer(player).onPlaylistItem(randomPl2(player));
+}
+</script>
+</body>
+</html>
