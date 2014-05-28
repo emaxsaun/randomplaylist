@@ -11,6 +11,8 @@ Implementation:
 You need the following script after your JW Player embed instance(s), please note that maxPlayers should be 1, unless you have more than one player on your page. In our demo, it is 2:
 
 <pre>
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
 var maxPlayers = 2;
 function randomPl(id){
 	return function(){
@@ -29,11 +31,12 @@ function randomPl2(id){
 		jwplayer(id).stop();
 	}
 }
-for(var i = 0; i < maxPlayers; i++) { 
+for(var i = 0; i &lt; maxPlayers; i++){
 	var player = jwplayer(i).id;
 	jwplayer(player).onComplete(randomPl(player));
 	jwplayer(player).onPlaylistItem(randomPl2(player));
 }
+&lt;/script&gt;
 </pre>
 
 Full Example:
@@ -47,45 +50,45 @@ Full Example:
 &lt;body&gt;
 &lt;div id=&quot;container&quot;&gt;&lt;/div&gt;&lt;br /&gt;&lt;div id=&quot;container2&quot;&gt;&lt;/div&gt;
 &lt;script&gt;
-jwplayer(&quot;container&quot;).setup({<br />
-&nbsp;&nbsp;playlist: &quot;http://content.jwplatform.com/feeds/13ShtP5m.rss&quot;,<br />
-&nbsp;&nbsp;displaytitle: false,<br />
-&nbsp;&nbsp;width: 640,<br />
-&nbsp;&nbsp;height: 360<br />
+jwplayer(&quot;container&quot;).setup({
+&nbsp;&nbsp;playlist: &quot;http://content.jwplatform.com/feeds/13ShtP5m.rss&quot;,
+&nbsp;&nbsp;displaytitle: false,
+&nbsp;&nbsp;width: 640,
+&nbsp;&nbsp;height: 360
 });
 &lt;/script&gt;
 &lt;script&gt;
-jwplayer(&quot;container2&quot;).setup({<br />
-&nbsp;&nbsp;playlist: &quot;http://content.jwplatform.com/feeds/13ShtP5m.rss&quot;,<br />
-&nbsp;&nbsp;displaytitle: false,<br />
-&nbsp;&nbsp;width: 640,<br />
-&nbsp;&nbsp;height: 360<br />
+jwplayer(&quot;container2&quot;).setup({
+&nbsp;&nbsp;playlist: &quot;http://content.jwplatform.com/feeds/13ShtP5m.rss&quot;,
+&nbsp;&nbsp;displaytitle: false,
+&nbsp;&nbsp;width: 640,
+&nbsp;&nbsp;height: 360
 });
 &lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
 var maxPlayers = 2;
-function randomPl(id){<br />
-	return function(){<br />
+function randomPl(id){
+	return function(){
 		var playlist = jwplayer(id).getPlaylist();
 		var playlistsize = playlist.length;
 		var randomnumber=Math.floor(Math.random()*playlistsize);
 		jwplayer(id).playlistItem(randomnumber);
-	}<br />
-}<br />
-function randomPl2(id){<br />
-	return function(){<br />
+	}
+}
+function randomPl2(id){
+	return function(){
 		var playlist = jwplayer(id).getPlaylist();
 		var playlistsize = playlist.length;
 		var randomnumber=Math.floor(Math.random()*playlistsize);
 		jwplayer(id).playlistItem(randomnumber);
 		jwplayer(id).stop();
-	}<br />
-}<br />
-for(var i = 0; i &lt; maxPlayers; i++) { <br />
+	}
+}
+for(var i = 0; i &lt; maxPlayers; i++){
 	var player = jwplayer(i).id;
 	jwplayer(player).onComplete(randomPl(player));
 	jwplayer(player).onPlaylistItem(randomPl2(player));
-}<br />
+}
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
